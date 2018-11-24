@@ -1,0 +1,35 @@
+{
+  "name": "cafe-critique",
+  "version": "1.0.0",
+  "description": "Final Project for ITSD412: Web Application Development 2",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JanCalebManzano/mean-stack-cafe-critique.git"
+  },
+  "keywords": [
+    "Final",
+    "Project",
+    "for",
+    "ITSD412:",
+    "Web",
+    "Application",
+    "Development",
+    "2"
+  ],
+  "author": "Jan Caleb S. Manzano",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JanCalebManzano/mean-stack-cafe-critique/issues"
+  },
+  "homepage": "https://github.com/JanCalebManzano/mean-stack-cafe-critique#readme",
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "express": "^4.16.4",
+    "mongoose": "^5.3.13",
+    "winston": "^3.1.0"
+  }
+}
