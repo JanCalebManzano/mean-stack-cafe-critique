@@ -1,0 +1,60 @@
+2018-11-24T04:37:07.869Z error: this.isModified is not a function
+2018-11-24T04:37:59.567Z error: this.isModified is not a function
+2018-11-24T04:41:24.940Z error: E11000 duplicate key error collection: db_cafe_critique.users index: username_1 dup key: { : "jayecee007" }
+2018-11-24T04:43:25.306Z error: E11000 duplicate key error collection: db_cafe_critique.users index: username_1 dup key: { : "jayecee007" }
+2018-11-24T04:43:32.560Z error: E11000 duplicate key error collection: db_cafe_critique.users index: email_1 dup key: { : "jcmanzano37@gmail.com" }
+2018-11-24T04:43:49.671Z error: E11000 duplicate key error collection: db_cafe_critique.users index: username_1 dup key: { : "jayecee007" }
+2018-11-24T04:44:00.220Z error: E11000 duplicate key error collection: db_cafe_critique.users index: username_1 dup key: { : "jayecee008" }
+2018-11-24T04:45:07.227Z error: E11000 duplicate key error collection: db_cafe_critique.users index: username_1 dup key: { : "jayecee008" }
+2018-11-24T04:46:02.123Z error: E11000 duplicate key error collection: db_cafe_critique.users index: email_1 dup key: { : "jcmanzano_07@yahoo.com" }
+2018-11-24T04:46:10.297Z error: E11000 duplicate key error collection: db_cafe_critique.users index: username_1 dup key: { : "jayecee008" }
+2018-11-24T04:47:27.160Z error: E11000 duplicate key error collection: db_cafe_critique.users index: username_1 dup key: { : "jayecee008" }
+2018-11-24T04:55:47.759Z error: E11000 duplicate key error collection: db_cafe_critique.users index: username_1 dup key: { : "jayecee" }
+2018-11-24T04:55:56.434Z error: E11000 duplicate key error collection: db_cafe_critique.users index: username_1 dup key: { : "jayecee007" }
+2018-11-24T04:56:45.387Z error: E11000 duplicate key error collection: db_cafe_critique.users index: email_1 dup key: { : "jcmanzano_07@y.co" }
+2018-11-24T04:56:54.659Z error: E11000 duplicate key error collection: db_cafe_critique.users index: email_1 dup key: { : "jcmanzano_07@y.com" }
+2018-11-24T05:14:21.846Z error: E11000 duplicate key error collection: db_cafe_critique.users index: username_1 dup key: { : "&lt;script&gt;jayecee0078&lt;&#x2f;script&gt;" }
+2018-11-24T05:16:48.115Z error: E11000 duplicate key error collection: db_cafe_critique.users index: username_1 dup key: { : "&lt;script&gt;jayecee0078&lt;&#x2f;script&gt;" }
+2018-11-24T05:16:58.436Z error: E11000 duplicate key error collection: db_cafe_critique.users index: email_1 dup key: { : "jcmanzano_07@g.com" }
+2018-11-24T05:17:12.782Z error: E11000 duplicate key error collection: db_cafe_critique.users index: email_1 dup key: { : "a@a.com" }
+2018-11-24T05:20:54.777Z error: E11000 duplicate key error collection: db_cafe_critique.users index: username_1 dup key: { : "b" }
+2018-11-24T05:20:58.150Z error: E11000 duplicate key error collection: db_cafe_critique.users index: username_1 dup key: { : "b" }
+2018-11-24T05:37:50.487Z error: E11000 duplicate key error collection: db_cafe_critique.users index: email_1 dup key: { : "c@a.com" }
+2018-11-24T06:48:51.557Z error: E11000 duplicate key error collection: db_cafe_critique.users index: username_1 dup key: { : "eeeeeeee" }
+2018-11-24T07:00:15.979Z error: E11000 duplicate key error collection: db_cafe_critique.users index: username_1 dup key: { : "ffffffff" }
+2018-11-24T07:47:07.950Z error: You must provide a username
+2018-11-24T07:48:58.497Z error: You must provide a username
+2018-11-24T07:53:03.208Z error: Username must have at least 8 characters but no more than 15
+2018-11-24T08:33:14.692Z error: You must provide a user type
+2018-11-24T08:33:24.389Z error: User type must be one of the following: Blogger, Restaurateur, Typical User
+2018-11-24T08:33:31.695Z error: User validation failed: userType: Path `userType` is required.
+2018-11-24T08:33:41.853Z error: User validation failed: userType: Path `userType` is required.
+2018-11-24T08:34:05.870Z error: User validation failed: userType: Path `userType` is required.
+2018-11-24T08:34:09.289Z error: User validation failed: userType: Path `userType` is required.
+2018-11-24T08:34:22.427Z error: User validation failed: userType: Path `userType` is required.
+2018-11-24T08:34:35.968Z error: User type must be one of the following: Blogger, Restaurateur, Typical User
+2018-11-24T08:34:38.702Z error: User type must be one of the following: Blogger, Restaurateur, Typical User
+2018-11-24T08:34:41.681Z error: User validation failed: userType: Path `userType` is required.
+2018-11-24T08:35:51.796Z error: User validation failed: userType: Path `userType` is required.
+2018-11-24T08:36:09.849Z error: User validation failed: userType: Path `userType` is required.
+2018-11-24T08:38:10.481Z error: E11000 duplicate key error collection: db_cafe_critique.users index: username_1 dup key: { : "ffffffff" }
+2018-11-24T08:38:19.200Z error: E11000 duplicate key error collection: db_cafe_critique.users index: username_1 dup key: { : "ffffffff" }
+2018-11-24T08:38:22.454Z error: Username must have at least 8 characters but no more than 15
+2018-11-24T08:38:38.643Z error: User type must be one of the following: Blogger, Restaurateur, Typical User
+2018-11-24T08:38:45.902Z error: User type must be one of the following: Blogger, Restaurateur, Typical User
+2018-11-24T08:38:49.065Z error: User type must be one of the following: Blogger, Restaurateur, Typical User
+2018-11-24T08:38:53.851Z error: User type must be one of the following: Blogger, Restaurateur, Typical User
+2018-11-24T08:56:27.906Z error: E11000 duplicate key error collection: db_cafe_critique.users index: username_1 dup key: { : "hhhhhhhh" }
+2018-11-24T08:56:31.358Z error: You must provide a user type
+2018-11-24T09:08:10.849Z error: You must provide a user type
+2018-11-24T09:08:45.726Z error: You must provide a user type
+2018-11-24T09:08:53.393Z error: User type must be one of the following: Blogger, Restaurateur, Typical User
+2018-11-24T09:10:08.251Z error: Invalid value
+2018-11-24T09:11:14.477Z error: Email must be valid
+2018-11-24T09:13:59.921Z error: E11000 duplicate key error collection: db_cafe_critique.users index: username_1 dup key: { : "jayecee007" }
+2018-11-24T09:14:00.870Z error: E11000 duplicate key error collection: db_cafe_critique.users index: username_1 dup key: { : "jayecee007" }
+2018-11-24T09:14:10.405Z error: Email must be valid
+2018-11-24T09:15:23.480Z error: E11000 duplicate key error collection: db_cafe_critique.users index: username_1 dup key: { : "jayecee007" }
+2018-11-24T09:21:49.041Z error: User type must be one of the following: Blogger, Restaurateur, Typical User
+2018-11-24T09:48:07.602Z error: User type must be one of the following: Blogger, Restaurateur, Typical User
+2018-11-24T10:54:03.620Z error: E11000 duplicate key error collection: db_cafe_critique.users index: username_1 dup key: { : "jayecee008" }
