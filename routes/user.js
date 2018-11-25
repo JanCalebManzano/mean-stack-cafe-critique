@@ -1,5 +1,4 @@
 const User = require( `../models/user` );
-const configDatabase = require( `../config/database` );
 const ObjectID = require( `mongodb` ).ObjectID;
 
 const express = require( `express` );
@@ -48,10 +47,19 @@ router.get( `/_id=:_id`, (req, res) => {
                     errors: [ error ]
                 } );
             } else {
-                return res.status(200).json( {
-                    error: false,
-                    data: user
-                } );
+                if( ! user ) {
+                    return res.status(400).json( {
+                        error: true,
+                        errors: [ {
+                            msg: `ID "${_id}" is not associated to any account`
+                        } ]
+                    } );
+                } else {
+                    return res.status(200).json( {
+                        error: false,
+                        data: user
+                    } );
+                }
             }
         } );
     }
@@ -71,10 +79,19 @@ router.get( `/username=:username`, (req, res) => {
                 errors: [ error ]
             } );
         } else {
-            return res.status(200).json( {
-                error: false,
-                data: user
-            } );
+            if( ! user ) {
+                return res.status(400).json( {
+                    error: true,
+                    errors: [ {
+                        msg: `Username "@${username}" is not associated to any account`
+                    } ]
+                } );
+            } else {
+                return res.status(200).json( {
+                    error: false,
+                    data: user
+                } );
+            }
         }
     } );
 } );

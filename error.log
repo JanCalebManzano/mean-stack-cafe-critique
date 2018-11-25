@@ -58,3 +58,16 @@
 2018-11-24T09:21:49.041Z error: User type must be one of the following: Blogger, Restaurateur, Typical User
 2018-11-24T09:48:07.602Z error: User type must be one of the following: Blogger, Restaurateur, Typical User
 2018-11-24T10:54:03.620Z error: E11000 duplicate key error collection: db_cafe_critique.users index: username_1 dup key: { : "jayecee008" }
+2018-11-24T11:50:01.837Z error: Username must have at least 8 characters but no more than 15
+2018-11-24T11:50:12.462Z error: Password must have at least 8 characters but no more than 15
+2018-11-24T11:50:21.769Z error: User type must be one of the following: Blogger, Restaurateur, Typical User
+2018-11-24T11:50:34.935Z error: User type must be one of the following: Blogger, Restaurateur, Typical User
+2018-11-24T12:35:19.363Z error: User type must be one of the following: Blogger, Restaurateur, Typical User
+2018-11-24T13:08:35.894Z error: User type must be one of the following: Blogger, Restaurateur, Typical User
+2018-11-24T22:43:32.624Z error: { _id: 5bf9162a05609e359074b098,
+  username: 'jayecee007',
+  password: '$2a$10$vzi4rEPM1SNKL3Vv8QcwAOslX2ckK8M49BWALX5cZDMQmB7aUNnOS',
+  name: 'Jan Caleb Manzano',
+  email: 'jcmanzano37@gmail.com',
+  userType: 'restaurateur',
+  __v: 0 }

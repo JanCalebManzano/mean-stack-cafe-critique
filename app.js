@@ -3,6 +3,12 @@ const mongoose = require( `mongoose` );
 const bodyParser = require( `body-parser` );
 const expressValidator = require( `express-validator` );
 const cors = require( `cors` );
+const path = require( `path` );
+// FILE UPLOAD
+const multer = require('multer');
+const GridFsStorage = require('multer-gridfs-storage');
+const Grid = require('gridfs-stream');
+const methodOverride = require('method-override');
 
 const configServer = require( `./config/server` );
 const configApp = require( `./config/app` );
@@ -14,6 +20,34 @@ const authentication = require( `./routes/authentication` );
 
 
 
+// Middlewares
+    // Body Parser
+    app.use( bodyParser.urlencoded( {extended:false} ) );
+    app.use( bodyParser.json() );
+    // Method Override
+    app.use( methodOverride(`_method`) );
+    // Express Validator
+    app.use( expressValidator( {
+    errorFormatter: ( param, msg, value ) => {
+        var namespace = param.split("."),
+            root = namespace.shift(),
+            formParam = root;
+
+        while( namespace.length ) {
+            formParam += `[${namespace.shift()}]`;
+        }
+        return {
+            param: formParam,
+            msg: msg,
+            value: value
+        }
+    }
+    } ) );
+    // CORS
+    app.use( cors() );
+
+
+    
 // Winston Logger
 const { createLogger, format, transports } = require(`winston`);
 const { combine, timestamp, label, printf } = format;
@@ -47,6 +81,17 @@ mongoose.set('useCreateIndex', true);
 
 
 
+// STATIC PATHS
+app.use( express.static( path.join( __dirname, `/public` ) ) );
+
+
+
+app.get( `/`, (req, res) => {
+    return res.sendFile( path.join( __dirname, `/public/views/pages/login.html` ) );
+} );
+
+
+
 // GLOBALS
 app.get( `*`, ( req, res, next ) => {
   res.locals.user = req.user || null;
@@ -65,35 +110,9 @@ app.use( ( req, res, next ) => {
 
 
 
-// Middlewares
-    // Body Parser
-    app.use( bodyParser.urlencoded( {extended:false} ) );
-    app.use( bodyParser.json() );    
-    // Express Validator
-    app.use( expressValidator( {
-    errorFormatter: ( param, msg, value ) => {
-        var namespace = param.split("."),
-            root = namespace.shift(),
-            formParam = root;
-
-        while( namespace.length ) {
-            formParam += `[${namespace.shift()}]`;
-        }
-        return {
-            param: formParam,
-            msg: msg,
-            value: value
-        }
-    }
-    } ) );
-    // CORS
-    app.use( cors() );
-
-
-
 // Routes
-app.get( `/`, (req, res, next) => {
-    return res.send( `Hello world` );
+app.get( `/login`, (req, res, next) => {
+    return res.sendFile( `./login/login.html` );
 } );
 
 

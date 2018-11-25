@@ -41,7 +41,6 @@ router.post( `/register`, [
 
     let errors = req.validationErrors();
     if( errors ) {
-        logger.error( errors[0].msg );
         return res.status(400).json( {
             error: true,
             errors: errors
