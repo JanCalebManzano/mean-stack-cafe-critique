@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/index.css">
+
+    <script src="./vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="./vendor/angular/angular.min.js"></script>
+    <script src="./controllers/ctrlAddRestaurant.js"></script>
+    <title>Add Restaurant</title>
+</head>
+<body>
+    
+    <div class="container" ng-app="appAddRestaurant" ng-controller="ctrlAddRestaurant">
+
+        <form name="frmAddRestaurant" method="post" enctype="application/x-www-form-urlencoded">
+
+            <div class="form-group">
+                <input type="text" class="form-control" name="name" ng-model="newRestaurant.name" placeholder="name">
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" name="description" ng-model="newRestaurant.description" placeholder="description">
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" name="location" ng-model="newRestaurant.location" placeholder="location">
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" name="restaurateur" ng-model="newRestaurant.restaurateur" placeholder="restaurateur">
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" name="isActive" ng-model="newRestaurant.isActive" placeholder="isActive" value="true">
+            </div>
+
+            <button type="submit" name="btnSubmit" value="Submit" ng-click="submitFrmAddRestaurant(this)">Submit</button>
+
+        </form>
+
+    </div>
+
+</body>
+</html>

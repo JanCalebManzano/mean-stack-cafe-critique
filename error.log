@@ -72,3 +72,18 @@
   userType: 'restaurateur',
   __v: 0 }
 2018-11-25T08:25:26.342Z error: User validation failed: userType: Path `userType` is required., email: Path `email` is required., name: Path `name` is required., password: Path `password` is required., username: Path `username` is required.
+2018-11-25T15:07:42.679Z error: Restaurant validation failed: coverImage: Path `coverImage` is required.
+2018-11-25T15:58:03.449Z error: Cast to ObjectId failed for value "[ { _id: 5bf9b20bfb8956173852e03c },
+  { _id: 5bf9b9bdfb8956173852e053 },
+  { _id: 5bfabae65711461f58996ad6 },
+  { _id: 5bfabb0b9a973023f4d8201a },
+  { _id: 5bfabbbdd74be12c903daf58 },
+  { _id: 5bfabbe024ac5a1a800be325 },
+  { _id: 5bfabbfd9ef34e3050b8d063 } ]" at path "restaurant" for model "Blog"
+2018-11-25T15:59:00.930Z error: Cast to ObjectId failed for value "[ { _id: 5bf9b20bfb8956173852e03c },
+  { _id: 5bf9b9bdfb8956173852e053 },
+  { _id: 5bfabae65711461f58996ad6 },
+  { _id: 5bfabb0b9a973023f4d8201a },
+  { _id: 5bfabbbdd74be12c903daf58 },
+  { _id: 5bfabbe024ac5a1a800be325 },
+  { _id: 5bfabbfd9ef34e3050b8d063 } ]" at path "restaurant" for model "Blog"

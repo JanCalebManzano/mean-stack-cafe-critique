@@ -4,10 +4,6 @@ const bodyParser = require( `body-parser` );
 const expressValidator = require( `express-validator` );
 const cors = require( `cors` );
 const path = require( `path` );
-// FILE UPLOAD
-const multer = require('multer');
-const GridFsStorage = require('multer-gridfs-storage');
-const Grid = require('gridfs-stream');
 const methodOverride = require('method-override');
 
 const configServer = require( `./config/server` );
@@ -15,7 +11,6 @@ const configApp = require( `./config/app` );
 const configDatabase = require( `./config/database` );
 
 const app = express();
-const router = express.Router();
 const authentication = require( `./routes/authentication` );
 
 
@@ -83,11 +78,20 @@ mongoose.set('useCreateIndex', true);
 
 // STATIC PATHS
 app.use( express.static( path.join( __dirname, `/public` ) ) );
+app.use( `/public`, express.static( path.join( __dirname, `/public` ) ) );
+app.use( `/js`, express.static( path.join( __dirname, `/public/js` ) ) );
+app.use( `/css`, express.static( path.join( __dirname, `/public/css` ) ) );
+app.use( `/controllers`, express.static( path.join( __dirname, `/public/controllers` ) ) );
+app.use( `/vendor`, express.static( path.join( __dirname, `/public/vendor` ) ) );
 
 
 
 app.get( `/`, (req, res) => {
-    return res.sendFile( path.join( __dirname, `/public/views/pages/login.html` ) );
+    return res.sendFile( path.join( __dirname, `/public/views/index.html` ) );
+} );
+
+app.get( `/upload`, (req, res) => {
+    return res.sendFile( path.join( __dirname, `/public/views/upload.html` ) );
 } );
 
 
@@ -111,18 +115,20 @@ app.use( ( req, res, next ) => {
 
 
 // Routes
-app.get( `/login`, (req, res, next) => {
-    return res.sendFile( `./login/login.html` );
-} );
+// app.get( `/upload`, (req, res, next) => {
+//     return res.sendFile( `public/views/index.html` );
+// } );
 
 
 
 const userRoutes = require( `./routes/user` );
 const restaurantRoutes = require( `./routes/restaurant` );
+const blogRoutes = require( `./routes/blog` );
 
 app.use( `/authentication`, authentication );
 app.use( `/user`, userRoutes );
 app.use( `/restaurant`, restaurantRoutes );
+app.use( `/blog`, blogRoutes );
 
 
 

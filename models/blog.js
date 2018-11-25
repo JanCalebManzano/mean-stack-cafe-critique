@@ -8,8 +8,7 @@ const blogSchema = new Schema( {
     content: { type: String, required: true },
     restaurant: { type: ObjectID, required: true },                                               // restaurant._id
     blogger: { type: String, lowercase: true, minlength: 8, maxlength: 15, required: true },    // user.username | user.userType="blogger"
-    timestamp: { type: Date, required: true },
-    coverImage: { type: String, required: true }
+    timestamp: { type: Date, required: true }
 } );
 
 

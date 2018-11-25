@@ -261,7 +261,7 @@ router.post(`/`, [
     sanitizeBody(`notifyOnReply`).toBoolean()
 ], (req, res) => {
 
-    const logger = req.logger || null;
+    const logger = req.logger || null;    
 
     req.checkBody( `name`, `You must provide a name`).notEmpty();
     req.checkBody( `name`, `Name must have numbers and letters only`).matches(/^[a-zA-Z\d ]+$/);;
@@ -286,56 +286,37 @@ router.post(`/`, [
             errors: errors
         } );
     } else {
-        upload(req, res, (error) => {
-            if(error){
-                return res.status(400).json( {
-                    error: true,
-                    errors: [error]
-                } );
-            } else {
-                if( req.file == undefined ){
+        let restaurant = new Restaurant({
+            name: capitalizeEachWord( req.body.name ),
+            description: req.body.description,
+            location: req.body.location,
+            restaurateur: req.body.restaurateur.toLowerCase(),
+            isActive:true
+        });
+        restaurant.save( (error,result) => {
+            if( error ) {
+                if( error.code === 11000 ) {
                     return res.status(400).json( {
                         error: true,
                         errors: [ {
-                            msg: `No file Selected`
+                            msg: `Restaurant already exists`
                         } ]
                     } );
                 } else {
-                    let restaurant = new Restaurant({
-                        name: capitalizeEachWord( req.body.name ),
-                        description: req.body.description,
-                        location: req.body.location,
-                        restaurateur: req.body.restaurateur.toLowerCase(),
-                        coverImage: req.file.filename,
-                        isActive:true
-                    });
-                    restaurant.save( (error,result) => {
-                        if( error ) {
-                            if( error.code === 11000 ) {
-                                return res.status(400).json( {
-                                    error: true,
-                                    errors: [ {
-                                        msg: `Restaurant already exists`
-                                    } ]
-                                } );
-                            } else {
-                                logger.error( error );
-                                return res.status(500).json( {
-                                    error: true,
-                                    errors: [ {
-                                        msg: `Could not create restaurant`
-                                    } ]
-                                } );
-                            }
-                        } else {
-                            return res.json( {
-                                error: false,
-                                result: result,
-                                msg: `Restaurant created`
-                            } );
-                        }
-                    });
+                    logger.error( error );
+                    return res.status(500).json( {
+                        error: true,
+                        errors: [ {
+                            msg: `Could not create restaurant`
+                        } ]
+                    } );
                 }
+            } else {
+                return res.json( {
+                    error: false,
+                    result: result,
+                    msg: `Restaurant created`
+                } );
             }
         });
     }
@@ -350,32 +331,6 @@ const capitalizeEachWord = ( text ) => {
         .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
         .join(' ');
 };
-
-const storage = multer.diskStorage({
-    destination: './public/uploads/',
-    filename: function( req, file, cb ){
-        cb( null,file.fieldname + '-' + Date.now() + path.extname(file.originalname) );
-    }
-});
-  
-const upload = multer({
-    storage: storage,
-    limits:{ fileSize: 1000000 },
-    fileFilter: function( req, file, cb ){
-        checkFileType(file, cb);
-    }
-}).single( 'myImage' );
-  
-const checkFileType = ( file, cb ) => {
-    const filetypes = /jpeg|jpg|png|gif/;
-    const extname = filetypes.test( path.extname( file.originalname ).toLowerCase() );
-    const mimetype = filetypes.test( file.mimetype );
-    if( mimetype && extname ){
-      return cb( null,true );
-    } else {
-      cb( 'Error: Images Only!' );
-    }
-}
 
 
 
