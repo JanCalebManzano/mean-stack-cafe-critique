@@ -3,18 +3,11 @@ const User = require( `../models/user` );
 const ObjectID = require( `mongodb` ).ObjectID;
 const multer = require('multer');
 const path = require('path');
-
 const { body } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
 
 const express = require( `express` );
 const router = express.Router();
-const ratingRouter = require( `./rating` );
-
-
-
-// SUBRESOURCE
-router.use( `/:restaurant_id/rating`, ratingRouter );
 
 
 
@@ -48,9 +41,9 @@ router.get( `/`, (req, res) => {
 } );
 
 // GET BY _ID
-router.get( `/:restaurant_id`, (req, res) => {
+router.get( `/_id=:_id`, (req, res) => {
     const logger = req.logger || null;
-    let _id = req.params.restaurant_id;
+    let _id = req.params._id;
 
     if( ! ObjectID.isValid(_id) ) {
         return res.status(400).json( {
@@ -243,21 +236,13 @@ router.put( `/_id=:_id`, [
     }
 } );
 
-// ADD
-router.post(`/`, [
+router.post(`/restaurant`, [
     body(`name`).trim().escape(),
     body(`description`).trim().escape(),
     body(`location`).trim().escape(),
     body(`restaurateur`).trim().escape(),
     body(`isActive`).isBoolean(),
     body(`restaurateur`).trim().escape(),
-    body(`restaurateur`).custom( (value) => {
-        return User.findOne( { username:value, userType:`restaurateur` } ).then( (user) => {
-            if( ! user ) {
-                throw new Error( `Username "@${value}" is not associated to any restaurateur account` );
-            }
-        } );
-    } ),
     sanitizeBody(`notifyOnReply`).toBoolean()
 ], (req, res) => {
 
@@ -286,62 +271,60 @@ router.post(`/`, [
             errors: errors
         } );
     } else {
-        upload(req, res, (error) => {
-            if(error){
-                return res.status(400).json( {
-                    error: true,
-                    errors: [error]
-                } );
+        upload(req, res, (err) => {
+            if(err){
+              return res.status(400).json( {
+                error: true,
+                errors: error
+            } );
             } else {
-                if( req.file == undefined ){
-                    return res.status(400).json( {
-                        error: true,
-                        errors: [ {
-                            msg: `No file Selected`
-                        } ]
-                    } );
-                } else {
-                    let restaurant = new Restaurant({
-                        name: capitalizeEachWord( req.body.name ),
-                        description: req.body.description,
-                        location: req.body.location,
-                        restaurateur: req.body.restaurateur.toLowerCase(),
-                        coverImage: req.file.filename,
-                        isActive:true
-                    });
-                    restaurant.save( (error,result) => {
-                        if( error ) {
-                            if( error.code === 11000 ) {
-                                return res.status(400).json( {
-                                    error: true,
-                                    errors: [ {
-                                        msg: `Restaurant already exists`
-                                    } ]
-                                } );
-                            } else {
-                                logger.error( error );
-                                return res.status(500).json( {
-                                    error: true,
-                                    errors: [ {
-                                        msg: `Could not create restaurant`
-                                    } ]
-                                } );
-                            }
-                        } else {
-                            return res.json( {
-                                error: false,
-                                result: result,
-                                msg: `Restaurant created`
-                            } );
-                        }
-                    });
-                }
+              if(req.file == undefined){
+                return res.status(400).json( {
+                  error: true,
+                  errors: [ {
+                      msg: `No file Selected`
+                  } ]
+              } );
+              } else {
+                let restaurant = new Restaurant({
+                  name: capitalizeEachWord( req.body.name ),
+                  description: req.body.description,
+                  location: req.body.location,
+                  restaurateur: req.body.restaurateur.toLowerCase(),
+                  coverImage: req.file.filename,
+                  isActive:true
+                });
+                restaurant.save( (error,result) => {
+                  if( error ) {
+                      if( error.code === 11000 ) {
+                          return res.status(400).json( {
+                              error: true,
+                              errors: [ {
+                                  msg: `Restaurant already exists`
+                              } ]
+                          } );
+                      } else {
+                          logger.error( error );
+                          return res.status(500).json( {
+                              error: true,
+                              errors: [ {
+                                  msg: `Could not create restaurant`
+                              } ]
+                          } );
+                      }
+                  } else {
+                      return res.json( {
+                          error: false,
+                          result, result,
+                          msg: `restaurant created`
+                      } );
+                  }
+              });
+              }
             }
-        });
-    }
+          });
+}
 });
-
-
 
 // MY FUNCTIONS
 const capitalizeEachWord = ( text ) => {
@@ -366,7 +349,7 @@ const upload = multer({
     }
 }).single( 'myImage' );
   
-const checkFileType = ( file, cb ) => {
+function checkFileType( file, cb ){
     const filetypes = /jpeg|jpg|png|gif/;
     const extname = filetypes.test( path.extname( file.originalname ).toLowerCase() );
     const mimetype = filetypes.test( file.mimetype );
@@ -375,8 +358,6 @@ const checkFileType = ( file, cb ) => {
     } else {
       cb( 'Error: Images Only!' );
     }
-}
-
-
+  }
 
 module.exports = router;

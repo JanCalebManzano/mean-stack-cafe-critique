@@ -71,3 +71,4 @@
   email: 'jcmanzano37@gmail.com',
   userType: 'restaurateur',
   __v: 0 }
+2018-11-25T08:25:26.342Z error: User validation failed: userType: Path `userType` is required., email: Path `email` is required., name: Path `name` is required., password: Path `password` is required., username: Path `username` is required.
